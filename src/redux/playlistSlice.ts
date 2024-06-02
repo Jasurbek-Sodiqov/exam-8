@@ -6,15 +6,25 @@ import { createSlice } from "@reduxjs/toolkit";
 export const playlistSlice=createSlice({
   name:"playlist",
   initialState:{
-    selected_id: 0,
+    selected_playlist_id: "37i9dQZF1DXcBWIGoYBM5M",
+    likeds: localStorage.getItem("likeds") ? JSON.parse(localStorage.getItem("likeds")!) : [],
   },
+
   reducers: {
     select_playlist: (state, action) => {
-      console.log(state);    
-      
-      state.selected_id = action.payload;
+      state.selected_playlist_id = action.payload;
+      console.log(action.payload);
+    },
+    like: (state, action) => {
+      if (state.likeds.includes(action.payload)){
+        state.likeds=state.likeds.filter((item)=>item!==action.payload)
+        localStorage.setItem("likeds", JSON.stringify(state.likeds));
+        return;
+      }
+      state.likeds.push(action.payload);
+      localStorage.setItem("likeds", JSON.stringify(state.likeds));
     },
   },
 })
 
-export const {select_playlist}=playlistSlice.actions
+export const {select_playlist, like}=playlistSlice.actions

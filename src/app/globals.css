@@ -13,7 +13,11 @@ body {
   font-family: CircularStd;
   background: #000;
 }
-.home{
+.home, 
+.playlist{
   height: 2100px;
   background: linear-gradient(180deg, rgba(51,51,163,1) 0%, rgba(18,18,18,1) 25%);
+}
+.playlist-img{
+  box-shadow: 1px 1px 60px black;
 }
